@@ -172,3 +172,39 @@ class RappSwitcher(sublime_plugin.WindowCommand):
             settings.set('linux', plat_settings)
 
         sublime.save_settings(settingsfile)
+
+# Displays the help file for the selected words
+class RHelpSelection(sublime_plugin.TextCommand):
+
+    def run(self, edit):
+        cmd = ''
+        for region in self.view.sel():
+            if region.begin() == region.end():
+                word = self.view.word(region)
+            else:
+                word = region
+            if not word.empty():
+                keyword = self.view.substr(word)
+                cmd += 'help('+keyword+')\n'
+        rcmd(cmd)
+
+# Displays the 'args(func)' for selected function(s)
+class RArgsSelection(sublime_plugin.TextCommand):
+
+    def run(self, edit):
+        cmd = ''
+        for region in self.view.sel():
+            if region.begin() == region.end():
+                word = self.view.word(region)
+            else:
+                word = region
+            if not word.empty():
+                keyword = self.view.substr(word)
+                cmd += 'args('+keyword+')\n'
+        rcmd(cmd)
+
+# Clears the console
+class RClearScreen(sublime_plugin.TextCommand):
+
+    def run(self, edit):
+        rcmd('cat(rep("\n", 100))')

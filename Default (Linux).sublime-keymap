@@ -19,5 +19,20 @@
       { "key": "selector", "operator": "equal", "operand": "source.r" },
       { "key": "selector", "operator": "not_equal", "operand": "text.tex.latex" }
     ]
+  },
+  { "keys": ["ctrl+shift+h"], "command": "r_help_selection", "context":
+    [
+      { "key": "selector", "operator": "equal", "operand": "source.r" }
+    ]
+  },
+ { "keys": ["ctrl+shift+a"], "command": "r_args_selection", "context":
+    [
+      { "key": "selector", "operator": "equal", "operand": "source.r" }
+    ]
+  },
+ { "keys": ["ctrl+c","ctrl+l","ctrl+s"], "command": "r_clear_screen", "context":
+    [
+      { "key": "selector", "operator": "equal", "operand": "source.r" }
+    ]
   }
 ]
