@@ -15,6 +15,7 @@ if sys.platform == "win32":
 container = {}
 last_row = 0
 settingsfile = 'Enhanced-R.sublime-settings'
+default_pkgs = 'ggplot2,data.table'
 
 # get platform specific key
 def get(plat, key, default=None):
@@ -41,14 +42,14 @@ def get_Rscript():
     return Rscript
 
 def mycheck_output(args):
-	if sys.platform == "win32":
-		startupinfo = subprocess.STARTUPINFO()
-		startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
-		output = subprocess.Popen(args, stdout=subprocess.PIPE, startupinfo=startupinfo).communicate()[0]
-	else:
-		output = subprocess.Popen(args, stdout=subprocess.PIPE).communicate()[0]
+    if sys.platform == "win32":
+        startupinfo = subprocess.STARTUPINFO()
+        startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+        output = subprocess.Popen(args, stdout=subprocess.PIPE, startupinfo=startupinfo).communicate()[0]
+    else:
+        output = subprocess.Popen(args, stdout=subprocess.PIPE).communicate()[0]
 
-	return output.decode('utf-8')
+    return output.decode('utf-8')
 
 
 class RStatusListener(sublime_plugin.EventListener):
@@ -75,7 +76,7 @@ class RStatusListener(sublime_plugin.EventListener):
         else:
             Rscript = get_Rscript()
             plat = sublime.platform()
-            output = mycheck_output([Rscript, '-e', 'args(' + func + ')'])
+            output = mycheck_output([Rscript, '-e', 'args(' + func + ')', '--default-packages=' + default_pkgs])
             if not re.match("function ", output): return
             output = re.sub(r"^function ", "", output)
             output = re.sub(r"\)[^)]*$", ")", output)
