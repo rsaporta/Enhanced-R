@@ -90,7 +90,7 @@ class RSendSelectCommand(sublime_plugin.TextCommand):
         if self.view.line(sel).begin() == esel.begin():
             return esel
 
-    def run(self, edit):
+    def run(self, edit, wrap=False):
         cmd = ''
         for sel in self.view.sel():
             if sel.empty():
@@ -103,7 +103,16 @@ class RSendSelectCommand(sublime_plugin.TextCommand):
             else:
                 thiscmd = self.view.substr(sel)
             cmd += thiscmd +'\n'
+        # wrap if flagged and if cmd is more than just whitespace
+        if (wrap and not re.match(r"^\s*$", cmd)):
+            # have exactly one '\n' before and after the commands
+            cmd = "{\n" + re.sub(r"(^\n*|\n*$)", "", cmd) + "\n}"
         rcmd(cmd)
+
+class RSendSelectWrapCommand(sublime_plugin.TextCommand):
+
+    def run(self, edit, wrap=True):
+        RSendSelectCommand.run(self, edit, wrap=True)
 
 class RChangeDirCommand(sublime_plugin.TextCommand):
     def run(self, edit):

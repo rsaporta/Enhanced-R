@@ -4,6 +4,11 @@
       { "key": "selector", "operator": "equal", "operand": "source.r" }
     ]
   },
+  { "keys": ["ctrl+shift+enter"], "command": "r_send_select_wrap", "context":
+    [
+      { "key": "selector", "operator": "equal", "operand": "source.r" }
+    ]
+  },
   { "keys": ["ctrl+\\"], "command": "r_change_dir", "context":
     [
       { "key": "selector", "operator": "equal", "operand": "source.r" }
