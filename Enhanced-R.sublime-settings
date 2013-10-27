@@ -29,5 +29,8 @@
         // paths to Rscript binary
         // "Rscript" : "",
     },
-    "extensions": ["r", "R", "s", "S", ".Rprofile"]
+    "extensions": ["r", "R", "s", "S", ".Rprofile"], 
+    
+    //  Allows for  '.' in R object names
+    "word_separators": "/\\()\"‘-:,;~!@#$%^&*|+=[]{}`~?"
 }
