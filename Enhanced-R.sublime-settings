@@ -7,11 +7,11 @@
     },
 
     "windows" : {
-        // R / R64
+        // R32 / R64
         "App" : "R64"
 
         // paths to R bibary
-        // "R" : "C:\\Program Files\\R\\R-3.0.1\\bin\\i386\\Rgui.exe",
+        // "R32" : "C:\\Program Files\\R\\R-3.0.1\\bin\\i386\\Rgui.exe",
         // "R64" : "C:\\Program Files\\R\\R-3.0.1\\bin\\x64\\Rgui.exe",
 
         // paths to Rscript binary
@@ -29,5 +29,12 @@
         // paths to Rscript binary
         // "Rscript" : "",
     },
-    "extensions": ["r", "R", "s", "S", ".Rprofile"]
+    // a list of packages which functions will show in the status bar
+    // "default_pkgs": ["base", "graphics", "grDevices", "methods", "stats", "utils"],
+
+    // a list of extensions
+    "extensions": ["r", "R", "s", "S", ".Rprofile"],
+
+    //  Allows for  '.' in R object names
+    "word_separators": "/\\()\"‘-:,;~!@#$%^&*|+=[]{}`~?"
 }
